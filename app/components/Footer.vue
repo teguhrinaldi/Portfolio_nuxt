@@ -18,8 +18,10 @@ onMounted(() => {
 	if (!sectionRef.value) return;
 
 	observer = new IntersectionObserver(
-		([entry]) => {
-			if (entry.isIntersecting) {
+		(entries) => {
+			const currentEntry = entries[0];
+
+			if (currentEntry && currentEntry.isIntersecting) {
 				visible.value = true;
 				observer?.disconnect();
 			}
@@ -44,7 +46,7 @@ onBeforeUnmount(() => {
 		data-testid="footer-section"
 		class="relative z-20 bg-black border-t border-zinc-900 pt-24 md:pt-32"
 	>
-		<div class="max-w-[1400px] mx-auto px-6 md:px-12">
+		<div class="max-w-350 mx-auto px-6 md:px-12">
 			<div class="grid lg:grid-cols-12 gap-12">
 				<!-- Main CTA -->
 				<div class="lg:col-span-7">
@@ -65,11 +67,11 @@ onBeforeUnmount(() => {
 					</h2>
 
 					<a
-						href="mailto:hello@teguh.dev"
+						href="mailto:teguhrinaldi23@gmail.com?subject=Hello%20Teguh&body=Hi%20Teguh%2C%0A%0AI%20saw%20your%20portfolio%20and%20wanted%20to%20reach%20out.%0A%0A"
 						data-testid="footer-email"
 						class="group mt-10 inline-flex items-center gap-3 font-heading text-2xl md:text-3xl text-zinc-300 hover:text-[#f56e0f] transition-colors"
 					>
-						hello@teguh.dev
+						teguhrinaldi23@gmail.com
 
 						<ArrowUpRight
 							:size="28"

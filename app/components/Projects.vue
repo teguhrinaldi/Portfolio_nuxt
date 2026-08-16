@@ -3,9 +3,10 @@ import { motion } from 'motion-v';
 import { ArrowUpRight } from 'lucide-vue-next';
 import { PROJECTS } from '../../data/portfolio';
 
-const EASE = [0.16, 1, 0.3, 1];
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const activeImage = ref<Record<string, number>>({});
+const activeProjectId = ref<string | null>(null);
 
 const getActiveIndex = (id: string) => {
 	return activeImage.value[id] ?? 0;
@@ -16,6 +17,11 @@ const getNextIndex = (id: string, total: number) => {
 	return (current + 1) % total;
 };
 
+const isTouchDevice = () =>
+	window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+const isProjectActive = (id: string) => activeProjectId.value === id;
+
 const swapImage = (id: string, total: number) => {
 	if (total <= 1) return;
 
@@ -23,6 +29,22 @@ const swapImage = (id: string, total: number) => {
 		...activeImage.value,
 		[id]: getNextIndex(id, total),
 	};
+};
+
+const handleProjectInteraction = (id: string, total: number) => {
+	if (total <= 1) return;
+
+	if (isTouchDevice()) {
+		activeProjectId.value = isProjectActive(id) ? null : id;
+	}
+
+	swapImage(id, total);
+};
+
+const clearProjectInteraction = () => {
+	if (isTouchDevice()) {
+		activeProjectId.value = null;
+	}
 };
 </script>
 
@@ -32,7 +54,7 @@ const swapImage = (id: string, total: number) => {
 		data-testid="projects-section"
 		class="relative z-20 bg-[#050505] py-24 md:py-32 lg:py-40"
 	>
-		<div class="max-w-[1400px] mx-auto px-6 md:px-12">
+		<div class="max-w-350 mx-auto px-6 md:px-12">
 			<!-- HEADER -->
 			<div
 				class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16"
@@ -89,17 +111,23 @@ const swapImage = (id: string, total: number) => {
 						ease: EASE,
 						delay: (i % 2) * 0.1,
 					}"
-					:class="['group relative block', p.span]"
+					:class="[
+						'group relative block',
+						p.span,
+						isProjectActive(p.id) ? 'is-active' : '',
+					]"
 					@click.prevent="
-						p.images?.length > 1 && swapImage(p.id, p.images.length)
+						p.images?.length > 1 &&
+						handleProjectInteraction(p.id, p.images.length)
 					"
+					@pointerleave="clearProjectInteraction"
 				>
 					<!-- IMAGE STACK -->
-					<div class="relative w-full aspect-[16/11] overflow-visible">
+					<div class="relative w-full aspect-16/11 overflow-visible">
 						<!-- BACK IMAGE -->
 						<div
 							v-if="p.images?.length > 1"
-							class="absolute inset-0 z-0 pointer-events-none transition-all duration-700 ease-out group-hover:translate-x-[26px] group-hover:translate-y-[26px]"
+							class="absolute inset-0 z-0 pointer-events-none transition-all duration-700 ease-out group-hover:translate-x-6.5 group-hover:translate-y-6.5"
 							:style="{
 								transform: 'translate(18px, 18px) scale(0.95)',
 							}"
@@ -107,10 +135,15 @@ const swapImage = (id: string, total: number) => {
 							<img
 								:src="p.images[getNextIndex(p.id, p.images.length)]"
 								:alt="`${p.title} alternate view`"
-								class="w-full h-full object-cover rounded-[24px] border border-white/10 bg-[#111] opacity-55"
+								class="w-full h-full object-cover rounded-3xl border border-white/10 bg-[#111] opacity-55 transition-all duration-700 ease-out"
+								:class="
+									isProjectActive(p.id)
+										? 'translate-x-6.5 translate-y-6.5 scale-[0.98]'
+										: ''
+								"
 							/>
 
-							<div class="absolute inset-0 rounded-[24px] bg-black/25" />
+							<div class="absolute inset-0 rounded-3xl bg-black/25" />
 						</div>
 
 						<!-- FRONT IMAGE -->
@@ -122,12 +155,13 @@ const swapImage = (id: string, total: number) => {
 								:src="p.images[getActiveIndex(p.id)]"
 								:alt="p.title"
 								loading="lazy"
-								class="w-full h-full object-cover rounded-[24px] border border-white/10 bg-[#0f0f0f] transition-all duration-700 ease-out group-hover:scale-[1.015]"
+								class="w-full h-full object-cover rounded-3xl border border-white/10 bg-[#0f0f0f] transition-all duration-700 ease-out group-hover:scale-[1.015]"
+								:class="isProjectActive(p.id) ? 'scale-[1.015]' : ''"
 							/>
 
 							<!-- GRADIENT -->
 							<div
-								class="absolute inset-0 rounded-[24px] bg-gradient-to-t from-black/65 via-transparent to-transparent pointer-events-none"
+								class="absolute inset-0 rounded-3xl bg-linear-to-t from-black/65 via-transparent to-transparent pointer-events-none"
 							/>
 
 							<!-- ARROW -->
@@ -147,15 +181,22 @@ const swapImage = (id: string, total: number) => {
 					</div>
 
 					<!-- PROJECT INFO -->
-					<div class="mt-7 flex items-baseline justify-between gap-6">
+					<div
+						class="relative z-20 mt-7 flex items-baseline justify-between gap-6 transition-all duration-700 ease-out group-hover:-translate-y-1.5 group-hover:scale-[1.015]"
+						:class="
+							isProjectActive(p.id) ? '-translate-y-1.5 scale-[1.015]' : ''
+						"
+					>
 						<h3
-							class="font-heading text-2xl md:text-3xl text-white tracking-tight group-hover:text-[#f56e0f] transition-colors duration-300"
+							class="font-heading text-2xl md:text-3xl text-white tracking-tight transition-all duration-700 ease-out group-hover:text-[#f56e0f]"
+							:class="isProjectActive(p.id) ? 'text-[#f56e0f]' : ''"
 						>
 							{{ p.title }}
 						</h3>
 
 						<span
-							class="font-mono text-[10px] md:text-xs uppercase tracking-[0.15em] text-zinc-500 text-right"
+							class="font-mono text-[10px] md:text-xs uppercase tracking-[0.15em] text-zinc-500 text-right transition-all duration-700 ease-out group-hover:text-zinc-300"
+							:class="isProjectActive(p.id) ? 'text-zinc-300' : ''"
 						>
 							{{ p.category }}
 						</span>

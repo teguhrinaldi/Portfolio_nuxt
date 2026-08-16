@@ -1,4 +1,5 @@
 import Lenis from 'lenis';
+import { defineNuxtPlugin } from 'nuxt/app';
 
 export default defineNuxtPlugin(() => {
 	const lenis = new Lenis({

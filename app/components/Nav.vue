@@ -40,16 +40,19 @@ onBeforeUnmount(() => {
 		}"
 	>
 		<div
-			class="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between"
+			class="max-w-350 mx-auto px-6 md:px-12 flex items-center justify-between"
 		>
 			<!-- Brand -->
 			<a
 				href="#home"
 				data-testid="nav-brand"
-				class="font-heading text-2xl font-semibold tracking-tight text-white"
+				class="inline-flex items-center justify-center"
 			>
-				{{ PROFILE.brand }}
-				<span class="text-[#f56e0f]">.</span>
+				<img
+					:src="PROFILE.brandLogo"
+					:alt="`${PROFILE.name} brand signature`"
+					class="h-25 w-auto object-contain md:h-16"
+				/>
 			</a>
 
 			<!-- Desktop Navigation -->
@@ -71,7 +74,7 @@ onBeforeUnmount(() => {
 				<a
 					:href="PROFILE.resume"
 					data-testid="nav-resume-btn"
-					class="hidden sm:flex items-center gap-2 rounded-full px-6 py-2.5 bg-[#f56e0f] text-black font-medium text-sm hover:bg-white transition-colors duration-300"
+					class="hidden sm:flex items-center gap-2 rounded-full px-6 py-2.5 bg-[#f56e0f] text-black font-bold text-sm hover:bg-white transition-colors duration-300"
 				>
 					Resume
 					<ArrowUpRight :size="16" :stroke-width="2.5" />
@@ -79,6 +82,7 @@ onBeforeUnmount(() => {
 
 				<!-- Mobile -->
 				<button
+					type="button"
 					data-testid="nav-mobile-toggle"
 					@click="open = !open"
 					class="md:hidden text-white p-2"
