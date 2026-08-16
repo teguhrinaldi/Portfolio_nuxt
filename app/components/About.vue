@@ -13,8 +13,10 @@ onMounted(() => {
 	if (!sectionRef.value) return;
 
 	observer = new IntersectionObserver(
-		([entry]) => {
-			if (entry.isIntersecting) {
+		(entries) => {
+			const currentEntry = entries[0];
+
+			if (currentEntry && currentEntry.isIntersecting) {
 				visible.value = true;
 				observer?.disconnect();
 			}
@@ -40,7 +42,7 @@ onBeforeUnmount(() => {
 		data-testid="about-section"
 		class="relative z-20 bg-[#050505] py-24 md:py-32 lg:py-40"
 	>
-		<div class="max-w-[1400px] mx-auto px-6 md:px-12">
+		<div class="max-w-350 mx-auto px-6 md:px-12">
 			<!-- Label -->
 			<p
 				class="font-mono text-xs uppercase tracking-[0.25em] text-[#f56e0f] mb-16"
@@ -54,7 +56,7 @@ onBeforeUnmount(() => {
 				<!-- Portrait -->
 				<div class="lg:col-span-5">
 					<div
-						class="relative overflow-hidden rounded-sm bg-[#0f0f0f] aspect-[4/5] border border-zinc-900"
+						class="relative overflow-hidden rounded-sm bg-[#0f0f0f] aspect-4/5 border border-zinc-900"
 						:class="visible ? 'about-reveal' : 'about-hidden'"
 						:style="{ '--delay': '0.1s' }"
 					>
@@ -81,9 +83,10 @@ onBeforeUnmount(() => {
 						:class="visible ? 'about-reveal' : 'about-hidden'"
 						:style="{ '--delay': '0.1s' }"
 					>
-						Hey there! I'm {{ PROFILE.firstName }} — a front end developer
+						Hey, I'm {{ PROFILE.firstName }} — a frontend engineer who loves
+						turning UI/UX into clean, scalable interfaces.
 						<span class="text-zinc-600">
-							fueled by creativity and a knack for tackling challenges head-on.
+							From blank projects to production-ready products.
 						</span>
 					</h2>
 

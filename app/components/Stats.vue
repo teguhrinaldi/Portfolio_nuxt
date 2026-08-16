@@ -13,7 +13,7 @@ const animateCounters = () => {
 	const start = performance.now();
 	const duration = 1600;
 
-	const targets = STATS.map((s) => parseInt(s.value, 10));
+	const targets = STATS.map((s) => Number.parseInt(s.value, 10));
 
 	const tick = (time: number) => {
 		const progress = Math.min((time - start) / duration, 1);
@@ -33,8 +33,10 @@ onMounted(() => {
 	if (!sectionRef.value) return;
 
 	observer = new IntersectionObserver(
-		([entry]) => {
-			if (entry.isIntersecting) {
+		(entries) => {
+			const currentEntry = entries[0];
+
+			if (currentEntry && currentEntry.isIntersecting) {
 				visible.value = true;
 				animateCounters();
 				observer?.disconnect();
@@ -65,7 +67,7 @@ onBeforeUnmount(() => {
 		class="relative z-20 bg-[#0a0a0a] border-y border-zinc-900"
 	>
 		<div
-			class="max-w-[1400px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-zinc-900"
+			class="max-w-350 mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-zinc-900"
 		>
 			<div
 				v-for="(stat, i) in STATS"

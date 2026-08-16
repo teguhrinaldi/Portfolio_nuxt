@@ -72,7 +72,7 @@ onBeforeUnmount(() => {
 		id="home"
 		ref="sectionRef"
 		data-testid="hero-section"
-		class="relative min-h-[100svh] w-full overflow-hidden hero-glow flex flex-col justify-end"
+		class="relative min-h-svh w-full overflow-hidden hero-glow flex flex-col justify-end"
 	>
 		<!-- Portrait -->
 		<div
@@ -80,7 +80,7 @@ onBeforeUnmount(() => {
 			:style="portraitStyle"
 		>
 			<img
-				:src="PROFILE.portrait"
+				:src="PROFILE.heroPortrait || PROFILE.portrait"
 				:alt="`${PROFILE.name}, ${PROFILE.role}`"
 				class="h-[62vh] md:h-[78vh] lg:h-[86vh] w-auto object-contain object-bottom select-none"
 				draggable="false"
@@ -95,7 +95,7 @@ onBeforeUnmount(() => {
 
 		<!-- Big type -->
 		<div
-			class="relative z-20 max-w-[1400px] mx-auto w-full px-6 md:px-12 pb-[6vh]"
+			class="relative z-20 max-w-350 mx-auto w-full px-6 md:px-12 pb-[6vh]"
 			:style="textStyle"
 		>
 			<div
@@ -134,7 +134,7 @@ onBeforeUnmount(() => {
 		<!-- Top meta row -->
 		<div class="absolute top-[16vh] md:top-[20vh] left-0 w-full z-20">
 			<div
-				class="max-w-[1400px] mx-auto px-6 md:px-12 flex justify-between items-start gap-8"
+				class="max-w-350 mx-auto px-6 md:px-12 flex justify-between items-start gap-8"
 			>
 				<!-- Tagline -->
 				<p
@@ -157,13 +157,7 @@ onBeforeUnmount(() => {
 						transition: 'opacity 1s ease',
 						transitionDelay: '1.1s',
 					}"
-				>
-					<span
-						class="font-mono text-xs uppercase tracking-[0.2em] text-[#f56e0f]"
-					>
-						● Available for work
-					</span>
-				</div>
+				></div>
 			</div>
 		</div>
 

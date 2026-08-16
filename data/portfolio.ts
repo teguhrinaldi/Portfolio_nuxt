@@ -10,20 +10,26 @@ import internhubcms1 from '~/assets/images/internhub-cms/Internhub-cms1.png';
 import cms from '~/assets/images/internhub-cms/cms.png';
 import ppid from '~/assets/images/PPID/ppid.png';
 import ppid1 from '~/assets/images/PPID/ppid-content.png';
+import gamifikasi from '~/assets/images/gamifikasi/gamifikasi.png';
+import foto from '~/assets/images/poto_teguh.jpeg';
+import heroFoto from '~/assets/images/poto_teguh1.png';
+import brandSignature from '~/assets/images/ttd_teguh.png';
+import resumePdf from '~/assets/CV_TeguhRinaldi.pdf';
 
 export const PROFILE = {
-	brand: 'LOCIO',
+	brand: 'TR',
+	brandLogo: brandSignature,
 	name: 'Teguh Rinaldi',
 	firstName: 'Teguh',
 	lastName: 'Rinaldi',
 	role: 'Front End Developer',
-	portrait:
-		'https://customer-assets-4nw71qhi.emergentagent.net/job_4fdae0bd-d443-4df0-8952-2646f42322ab/artifacts/xfi0vnb6_poto_teguh_-removebg-preview.png',
+	portrait: foto,
+	heroPortrait: heroFoto,
 	tagline:
-		"An enthusiastic front end developer breathing life into code — crafting interfaces that don't just capture attention, they mesmerize.",
+		'I turn ideas and designs into interfaces that feel right — from pixels and layouts to production-ready code.',
 	about:
-		"Hey there! I'm Teguh Rinaldi, a dedicated front end developer fueled by creativity and a knack for tackling challenges head-on. With a fusion of technical expertise and a user-focused mindset, I'm committed to crafting seamless digital solutions that resonate with your audience. Let's team up and turn your ideas into reality.",
-	resume: '#',
+		"I'm Teguh Rinaldi, a frontend engineer focused on turning UI/UX designs and business requirements into real, usable products. I enjoy figuring out how a design should translate into components, layouts, and a frontend architecture that can actually grow with the product. I've built enterprise applications from scratch using React, Next.js, and TypeScript, while working with APIs, state management, authentication, and complex data-driven interfaces.",
+	resume: resumePdf,
 };
 
 export const NAV_LINKS = [
@@ -34,38 +40,38 @@ export const NAV_LINKS = [
 ];
 
 export const SKILLS = [
-	'Rapid Prototyping',
-	'User Testing',
-	'Design Systems',
-	'Graphic Design',
-	'SEO Craft',
-	'Motion Design',
+	'Frontend Architecture',
+	'UI Implementation',
+	'Responsive Design',
 	'React',
+	'Next.js',
 	'TypeScript',
 	'Tailwind CSS',
-	'Framer Motion',
+	'Shadcn UI',
+	'REST API Integration',
+	'TanStack Query',
 ];
 
 export const MANIFESTO = [
 	{
 		num: '01',
-		title: 'Precision',
-		body: 'Pixel-honest layouts and a typographic system that holds its rhythm on every screen.',
+		title: 'UI',
+		body: 'I enjoy turning Figma designs into responsive interfaces where layout, spacing, and positioning actually feel right.',
 	},
 	{
 		num: '02',
-		title: 'Motion',
-		body: 'Purposeful animation that guides the eye and gives interfaces a living, tactile pulse.',
+		title: 'Architecture',
+		body: 'I think about the structure behind the interface — reusable components, state, API integration, and a codebase that can grow with the product.',
 	},
 	{
 		num: '03',
-		title: 'Emotion',
-		body: 'Interfaces built to be felt — details that turn a first visit into a lasting impression.',
+		title: 'Ownership',
+		body: 'From an empty repository to deployment, I enjoy taking ownership and figuring out how things should work along the way.',
 	},
 ];
 
 export const STATS = [
-	{ value: '5+', label: 'Years of Design Experience' },
+	{ value: '5+', label: 'Years of FrontEnd Engineer' },
 	{ value: '50+', label: 'Overall Global Customers' },
 	{ value: '90+', label: 'Projects Worked On' },
 ];
@@ -114,11 +120,25 @@ export const PROJECTS = [
 		images: [ppid, ppid1],
 		span: 'lg:col-span-7',
 	},
+	{
+		id: 'Gamifikasi',
+		title: 'Gamifikasi live Tracking',
+		category: 'web App · Gamifikasi live Tracking',
+		year: '2024',
+		images: [gamifikasi],
+		span: 'lg:col-span-5',
+	},
 ];
 
 export const SOCIAL = [
-	{ label: 'LinkedIn', href: '#' },
-	{ label: 'Behance', href: '#' },
-	{ label: 'Dribbble', href: '#' },
-	{ label: 'Figma', href: '#' },
+	{
+		label: 'LinkedIn',
+		href: 'https://www.linkedin.com/in/teguh-rinaldi-a1a58717b/',
+	},
+	{ label: 'Instagram', href: '#' },
+	{ label: 'Github', href: 'https://github.com/teguhrinaldi' },
+	{
+		label: 'Figma',
+		href: 'https://www.figma.com/files/team/1303303339286753940/recents-and-sharing/recently-viewed?fuid=1001361561339573843',
+	},
 ];
