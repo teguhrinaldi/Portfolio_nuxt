@@ -71,9 +71,9 @@ export const MANIFESTO = [
 ];
 
 export const STATS = [
-	{ value: '5+', label: 'Years of FrontEnd Engineer' },
-	{ value: '50+', label: 'Overall Global Customers' },
-	{ value: '90+', label: 'Projects Worked On' },
+	{ value: '3+', label: 'Years of FrontEnd Engineer' },
+	{ value: '3+', label: 'Company Work With' },
+	{ value: '8+', label: 'Projects Worked On' },
 ];
 
 export const PROJECTS = [
@@ -135,7 +135,7 @@ export const SOCIAL = [
 		label: 'LinkedIn',
 		href: 'https://www.linkedin.com/in/teguh-rinaldi-a1a58717b/',
 	},
-	{ label: 'Instagram', href: '#' },
+	{ label: 'Instagram', href: 'https://www.instagram.com/teguhrinaldi/' },
 	{ label: 'Github', href: 'https://github.com/teguhrinaldi' },
 	{
 		label: 'Figma',

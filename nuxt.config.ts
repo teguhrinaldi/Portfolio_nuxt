@@ -7,6 +7,26 @@ export default defineNuxtConfig({
 		enabled: true,
 	},
 
+	app: {
+		head: {
+			link: [
+				{
+					rel: 'preconnect',
+					href: 'https://fonts.googleapis.com',
+				},
+				{
+					rel: 'preconnect',
+					href: 'https://fonts.gstatic.com',
+					crossorigin: 'anonymous',
+				},
+				{
+					rel: 'stylesheet',
+					href: 'https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap',
+				},
+			],
+		},
+	},
+
 	css: ['~/assets/css/main.css'],
 
 	vite: {
