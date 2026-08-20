@@ -1,20 +1,24 @@
-import eosImage from '~/assets/images/E-OS/E-OS.jpeg';
-import eosContentsImage from '~/assets/images/E-OS/E-os_contents.jpeg';
-import itms from '~/assets/images/itms/itms.jpeg';
-import itms1 from '~/assets/images/itms/itms-1.jpeg';
-import itms2 from '~/assets/images/itms/itms-2.jpeg';
-import internhub from '~/assets/images/internhub-portal/internhub.png';
-import internhub1 from '~/assets/images/internhub-portal/Internhub-content.jpeg';
-import internhubcms from '~/assets/images/internhub-cms/Internhub-cms.png';
-import internhubcms1 from '~/assets/images/internhub-cms/Internhub-cms1.png';
-import cms from '~/assets/images/internhub-cms/cms.png';
-import ppid from '~/assets/images/PPID/ppid.png';
-import ppid1 from '~/assets/images/PPID/ppid-content.png';
-import gamifikasi from '~/assets/images/gamifikasi/gamifikasi.png';
-import foto from '~/assets/images/poto_teguh.jpeg';
-import heroFoto from '~/assets/images/poto_teguh1.png';
-import brandSignature from '~/assets/images/ttd_teguh.png';
+import eosImage from '~~/public/images/E-OS/E-OS.jpeg';
+import eosContentsImage from '~~/public/images/E-OS/E-os_contents.jpeg';
+import itms from '~~/public/images/itms/itms.jpeg';
+import itms1 from '~~/public/images/itms/itms-1.jpeg';
+import itms2 from '~~/public/images/itms/itms-2.jpeg';
+import internhub from '~~/public/images/internhub-portal/internhub.png';
+import internhub1 from '~~/public/images/internhub-portal/Internhub-content.jpeg';
+import internhubcms from '~~/public/images/internhub-cms/Internhub-cms.png';
+import internhubcms1 from '~~/public/images/internhub-cms/Internhub-cms1.png';
+import cms from '~~/public/images/internhub-cms/cms.png';
+import ppid from '~~/public/images/PPID/ppid.png';
+import ppid1 from '~~/public/images/PPID/ppid-content.png';
+import gamifikasi from '~~/public/images/gamifikasi/gamifikasi.png';
+import gamifikasi2 from '~~/public/images/gamifikasi/gamifikasi_livetracking.jpg';
+import foto from '~~/public/images/poto_teguh.jpeg';
+import heroFoto from '~~/public/images/poto_teguh1.png';
+import brandSignature from '~~/public/images/ttd_teguh.png';
 import resumePdf from '~/assets/CV_TeguhRinaldi.pdf';
+import nelcish from '~~/public/images/nelcish2.jpg';
+import dwidaya from '~~/public/images/dwidaya.png';
+import visitind from '~~/public/images/visit.png';
 
 export const PROFILE = {
 	brand: 'TR',
@@ -71,9 +75,9 @@ export const MANIFESTO = [
 ];
 
 export const STATS = [
-	{ value: '5+', label: 'Years of FrontEnd Engineer' },
-	{ value: '50+', label: 'Overall Global Customers' },
-	{ value: '90+', label: 'Projects Worked On' },
+	{ value: '4+', label: 'Years of FrontEnd Engineer' },
+	{ value: '2+', label: 'Company that i worked with' },
+	{ value: '10+', label: 'Projects Worked On' },
 ];
 
 export const PROJECTS = [
@@ -125,7 +129,31 @@ export const PROJECTS = [
 		title: 'Gamifikasi live Tracking',
 		category: 'web App · Gamifikasi live Tracking',
 		year: '2024',
-		images: [gamifikasi],
+		images: [gamifikasi, gamifikasi2],
+		span: 'lg:col-span-5',
+	},
+	{
+		id: 'Nelcsih Gigbag',
+		title: 'Nelcish Gigbag',
+		category: 'web App · Purchasing Item',
+		year: '2023',
+		images: [nelcish],
+		span: 'lg:col-span-5',
+	},
+	{
+		id: 'Dwidaya',
+		title: 'Dwidaya Tour & Travel',
+		category: 'web App · Boking Travel',
+		year: '2023',
+		images: [dwidaya],
+		span: 'lg:col-span-7',
+	},
+	{
+		id: 'VisitInd',
+		title: 'Visit Indonesia',
+		category: 'web App · Boking Travel',
+		year: '2023',
+		images: [visitind],
 		span: 'lg:col-span-5',
 	},
 ];
