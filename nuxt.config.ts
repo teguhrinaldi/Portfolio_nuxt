@@ -9,7 +9,13 @@ export default defineNuxtConfig({
 
 	app: {
 		head: {
+			title: 'Portfolio Teguh',
 			link: [
+				{
+					rel: 'icon',
+					type: 'image/png',
+					href: '/ttd_teguh.png',
+				},
 				{
 					rel: 'preconnect',
 					href: 'https://fonts.googleapis.com',
