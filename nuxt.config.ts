@@ -9,12 +9,12 @@ export default defineNuxtConfig({
 
 	app: {
 		head: {
-			title: 'Portfolio Teguh',
+			title: 'Teguh Rinaldi',
 			link: [
 				{
 					rel: 'icon',
-					type: 'image/png',
-					href: '/ttd_teguh.png',
+					type: 'image/x-icon',
+					href: '/favicon.ico',
 				},
 				{
 					rel: 'preconnect',
@@ -37,18 +37,5 @@ export default defineNuxtConfig({
 
 	vite: {
 		plugins: [tailwindcss()],
-	},
-
-	app: {
-		head: {
-			title: 'Teguh Rinaldi',
-			link: [
-				{
-					rel: 'icon',
-					type: 'image/x-icon',
-					href: '/favicon.ico',
-				},
-			],
-		},
 	},
 });

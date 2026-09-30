@@ -208,7 +208,20 @@ const pauseVideo = (id: string) => {
 							preload="auto"
 							@play="isPlaying[product.id] = true"
 							@pause="isPlaying[product.id] = false"
-						/>
+						>
+							<track
+								kind="captions"
+								srclang="en"
+								label="English captions"
+								src="/captions/product-preview-captions.vtt"
+							/>
+							<track
+								kind="descriptions"
+								srclang="en"
+								label="English description"
+								src="/captions/product-preview-descriptions.vtt"
+							/>
+						</video>
 
 						<div
 							class="pointer-events-none absolute inset-0 bg-linear-to-t from-black/65 via-transparent to-transparent"
@@ -217,31 +230,53 @@ const pauseVideo = (id: string) => {
 						<div
 							class="absolute inset-x-4 bottom-4 flex items-center justify-between gap-3 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:transition-opacity [@media(hover:hover)]:duration-300 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-within:opacity-100"
 						>
-							<button
-								type="button"
-								class="inline-flex h-10 items-center gap-2 rounded-full border border-white/20 bg-black/55 px-4 font-mono text-[10px] uppercase tracking-[0.15em] text-white backdrop-blur transition-colors hover:border-[#f56e0f] hover:bg-[#f56e0f] hover:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f56e0f]"
-								:aria-label="`${isPlaying[product.id] ? 'Pause' : 'Play'} ${product.title} preview`"
-								@click.stop="
-									isPlaying[product.id]
-										? pauseVideo(product.id)
-										: playVideo(product.id)
-								"
-							>
-								<Pause v-if="isPlaying[product.id]" :size="14" />
-								<Play v-else :size="14" />
-								{{ isPlaying[product.id] ? 'Pause' : 'Play' }}
-							</button>
+							<div class="relative">
+								<span
+									aria-hidden="true"
+									class="pointer-events-none absolute bottom-full left-1/2 z-30 mb-3 -translate-x-1/2 translate-y-1 scale-90 whitespace-nowrap rounded-full border border-zinc-200/80 bg-white px-3.5 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-zinc-950 opacity-0 shadow-[0_8px_24px_rgba(0,0,0,0.3)] transition-[opacity,transform] duration-300 ease-out group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:scale-100 group-focus-within:opacity-100"
+								>
+									Play Me
+									<span
+										class="absolute -bottom-1 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 border-r border-b border-zinc-200/80 bg-white"
+									/>
+								</span>
+								<button
+									type="button"
+									class="inline-flex h-10 items-center gap-2 rounded-full border border-white/20 bg-black/55 px-4 font-mono text-[10px] uppercase tracking-[0.15em] text-white backdrop-blur transition-colors hover:border-[#f56e0f] hover:bg-[#f56e0f] hover:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f56e0f]"
+									:aria-label="`${isPlaying[product.id] ? 'Pause' : 'Play'} ${product.title} preview`"
+									@click.stop="
+										isPlaying[product.id]
+											? pauseVideo(product.id)
+											: playVideo(product.id)
+									"
+								>
+									<Pause v-if="isPlaying[product.id]" :size="14" />
+									<Play v-else :size="14" />
+									{{ isPlaying[product.id] ? 'Pause' : 'Play' }}
+								</button>
+							</div>
 
-							<a
-								:href="product.url"
-								target="_blank"
-								rel="noopener noreferrer"
-								class="inline-flex h-10 items-center gap-2 rounded-full border border-white/20 bg-black/55 px-4 font-mono text-[10px] uppercase tracking-[0.15em] text-white backdrop-blur transition-colors hover:border-[#f56e0f] hover:bg-[#f56e0f] hover:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f56e0f]"
-								:aria-label="`Open ${product.title} demo in a new tab`"
-							>
-								Live Demo
-								<ArrowUpRight :size="14" />
-							</a>
+							<div class="relative">
+								<span
+									aria-hidden="true"
+									class="pointer-events-none absolute bottom-full left-1/2 z-30 mb-3 -translate-x-1/2 translate-y-1 scale-90 whitespace-nowrap rounded-full border border-zinc-200/80 bg-white px-3.5 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-zinc-950 opacity-0 shadow-[0_8px_24px_rgba(0,0,0,0.3)] transition-[opacity,transform] duration-300 ease-out group-hover:translate-y-0 group-hover:scale-100 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:scale-100 group-focus-within:opacity-100 delay-75"
+								>
+									Hit Me
+									<span
+										class="absolute -bottom-1 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 border-r border-b border-zinc-200/80 bg-white"
+									/>
+								</span>
+								<a
+									:href="product.url"
+									target="_blank"
+									rel="noopener noreferrer"
+									class="inline-flex h-10 items-center gap-2 rounded-full border border-white/20 bg-black/55 px-4 font-mono text-[10px] uppercase tracking-[0.15em] text-white backdrop-blur transition-colors hover:border-[#f56e0f] hover:bg-[#f56e0f] hover:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f56e0f]"
+									:aria-label="`Open ${product.title} demo in a new tab`"
+								>
+									Live Demo
+									<ArrowUpRight :size="14" />
+								</a>
+							</div>
 						</div>
 					</div>
 

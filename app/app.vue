@@ -6,7 +6,7 @@
 
 		<main>
 			<Hero />
-			<Marquee />
+
 			<About />
 			<Stats />
 			<Projects />
