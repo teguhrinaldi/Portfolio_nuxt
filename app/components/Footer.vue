@@ -54,7 +54,7 @@ onBeforeUnmount(() => {
 						class="font-mono text-xs uppercase tracking-[0.25em] text-[#f56e0f] mb-8"
 						:class="visible ? 'footer-label-show' : 'footer-hidden'"
 					>
-						( 03 ) — Get in touch
+						( 04 ) — Get in touch
 					</p>
 
 					<h2
