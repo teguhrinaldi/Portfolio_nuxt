@@ -38,4 +38,17 @@ export default defineNuxtConfig({
 	vite: {
 		plugins: [tailwindcss()],
 	},
+
+	app: {
+		head: {
+			title: 'Teguh Rinaldi',
+			link: [
+				{
+					rel: 'icon',
+					type: 'image/x-icon',
+					href: '/favicon.ico',
+				},
+			],
+		},
+	},
 });

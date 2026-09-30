@@ -1,20 +1,24 @@
-import eosImage from '~/assets/images/E-OS/E-OS.jpeg';
-import eosContentsImage from '~/assets/images/E-OS/E-os_contents.jpeg';
-import itms from '~/assets/images/itms/itms.jpeg';
-import itms1 from '~/assets/images/itms/itms-1.jpeg';
-import itms2 from '~/assets/images/itms/itms-2.jpeg';
-import internhub from '~/assets/images/internhub-portal/internhub.png';
-import internhub1 from '~/assets/images/internhub-portal/Internhub-content.jpeg';
-import internhubcms from '~/assets/images/internhub-cms/Internhub-cms.png';
-import internhubcms1 from '~/assets/images/internhub-cms/Internhub-cms1.png';
-import cms from '~/assets/images/internhub-cms/cms.png';
-import ppid from '~/assets/images/PPID/ppid.png';
-import ppid1 from '~/assets/images/PPID/ppid-content.png';
-import gamifikasi from '~/assets/images/gamifikasi/gamifikasi.png';
-import foto from '~/assets/images/poto_teguh.jpeg';
-import heroFoto from '~/assets/images/poto_teguh1.png';
-import brandSignature from '~/assets/images/ttd_teguh.png';
-import resumePdf from '~/assets/CV_TeguhRinaldi.pdf';
+const eosImage = '/images/E-OS/E-OS.jpeg';
+const eosContentsImage = '/images/E-OS/E-os_contents.jpeg';
+const itms = '/images/itms/itms.jpeg';
+const itms1 = '/images/itms/itms-1.jpeg';
+const itms2 = '/images/itms/itms-2.jpeg';
+const internhub = '/images/internhub-portal/internhub.png';
+const internhub1 = '/images/internhub-portal/Internhub-content.jpeg';
+const internhubcms = '/images/internhub-cms/Internhub-cms.png';
+const internhubcms1 = '/images/internhub-cms/Internhub-cms1.png';
+const cms = '/images/internhub-cms/cms.png';
+const ppid = '/images/PPID/ppid.png';
+const ppid1 = '/images/PPID/ppid-content.png';
+const gamifikasi = '/images/gamifikasi/gamifikasi.png';
+const gamifikasi2 = '/images/gamifikasi/gamifikasi_livetracking.jpg';
+const foto = '/images/poto_teguh.jpeg';
+const heroFoto = '/images/poto_teguh1.png';
+const brandSignature = '/images/ttd_teguh.png';
+const resumePdf = '/CV_TeguhRinaldi.pdf';
+const nelcish = '/images/nelcish2.jpg';
+const dwidaya = '/images/dwidaya.png';
+const visitind = '/images/visit.png';
 
 export const PROFILE = {
 	brand: 'TR',
@@ -125,7 +129,31 @@ export const PROJECTS = [
 		title: 'Gamifikasi live Tracking',
 		category: 'web App · Gamifikasi live Tracking',
 		year: '2024',
-		images: [gamifikasi],
+		images: [gamifikasi, gamifikasi2],
+		span: 'lg:col-span-5',
+	},
+	{
+		id: 'Nelcsih Gigbag',
+		title: 'Nelcish Gigbag',
+		category: 'web App · Purchasing Item',
+		year: '2023',
+		images: [nelcish],
+		span: 'lg:col-span-5',
+	},
+	{
+		id: 'Dwidaya',
+		title: 'Dwidaya Tour & Travel',
+		category: 'web App · Boking Travel',
+		year: '2023',
+		images: [dwidaya],
+		span: 'lg:col-span-7',
+	},
+	{
+		id: 'VisitInd',
+		title: 'Visit Indonesia',
+		category: 'web App · Boking Travel',
+		year: '2023',
+		images: [visitind],
 		span: 'lg:col-span-5',
 	},
 ];
