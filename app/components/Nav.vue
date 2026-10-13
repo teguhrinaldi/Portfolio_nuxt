@@ -62,7 +62,7 @@ onBeforeUnmount(() => {
 					:key="link.label"
 					:href="link.href"
 					:data-testid="`nav-link-${link.label.toLowerCase()}`"
-					class="font-mono text-xs uppercase tracking-[0.15em] text-zinc-400 hover:text-white transition-colors duration-300"
+					class="font-mono text-xs uppercase tracking-[0.15em] text-zinc-400 hover:text-[#f56e0f] transition-colors duration-300"
 				>
 					{{ link.label }}
 				</a>

@@ -6,10 +6,11 @@
 
 		<main>
 			<Hero />
-			<Marquee />
+
 			<About />
 			<Stats />
 			<Projects />
+			<Products />
 		</main>
 
 		<Footer />

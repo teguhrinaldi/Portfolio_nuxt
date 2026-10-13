@@ -9,7 +9,13 @@ export default defineNuxtConfig({
 
 	app: {
 		head: {
+			title: 'Teguh Rinaldi',
 			link: [
+				{
+					rel: 'icon',
+					type: 'image/x-icon',
+					href: '/favicon.ico',
+				},
 				{
 					rel: 'preconnect',
 					href: 'https://fonts.googleapis.com',
