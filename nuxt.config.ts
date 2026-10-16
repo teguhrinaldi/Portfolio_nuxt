@@ -35,6 +35,19 @@ export default defineNuxtConfig({
 
 	css: ['~/assets/css/main.css'],
 
+	// Static output for Cloudflare (Pages or Workers static assets): `nuxt generate`
+	// writes the site to ./dist together with _headers/_redirects.
+	nitro: {
+		preset: 'cloudflare-pages-static',
+	},
+
+	routeRules: {
+		// Hashed build assets never change, so they can be cached forever.
+		'/_nuxt/**': {
+			headers: { 'cache-control': 'public, max-age=31536000, immutable' },
+		},
+	},
+
 	vite: {
 		plugins: [tailwindcss()],
 	},

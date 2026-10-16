@@ -112,3 +112,312 @@ body {
 
 	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+
+.world-hop-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	border: 1px solid rgb(255 255 255 / 10%);
+	border-radius: 9999px;
+	padding: 0.625rem 0.75rem;
+	color: #d4d4d8;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 10px;
+	letter-spacing: 0.02em;
+	white-space: nowrap;
+	transition:
+	border-color 300ms,
+	color 300ms,
+	background-color 300ms;
+}
+
+.world-hop-link::before {
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background-color: var(--accent);
+	box-shadow: 0 0 8px rgb(245 110 15 / 65%);
+	content: '';
+	flex: 0 0 auto;
+}
+
+.world-hop-link:hover,
+.world-hop-link:focus-visible {
+	border-color: rgb(245 110 15 / 55%);
+	background-color: rgb(245 110 15 / 6%);
+	color: #fff;
+}
+
+.world-hop-link:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 3px;
+}
+
+/* Button: subtle orange/gray split on its own label while hovered */
+.world-hop-link:hover,
+.world-hop-link:focus-visible {
+	animation: world-label-split 1.4s step-end infinite;
+}
+
+@keyframes world-label-split {
+	0%,
+	100% {
+		text-shadow: none;
+	}
+
+	8% {
+		text-shadow:
+			-1.5px 0 rgb(245 110 15 / 80%),
+			1.5px 0 rgb(212 212 216 / 45%);
+	}
+
+	14% {
+		text-shadow: none;
+	}
+
+	46% {
+		text-shadow:
+			1px 0 rgb(245 110 15 / 75%),
+			-1px 0 rgb(212 212 216 / 40%);
+	}
+
+	52% {
+		text-shadow: none;
+	}
+}
+
+
+/*
+ * Progressive world glitch (driven by useWorldGlitch). Each corrupted frame
+ * applies freshly randomized SVG filters (#world-glitch-*) to the page regions
+ * and draws noise, corruption blocks and scanlines through fixed pseudo-elements.
+ * Visual only: no transforms or layout changes, and removing the classes
+ * restores the page instantly.
+ */
+:root {
+	--glitch-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+html.world-glitch-frame .App > header {
+	filter: url(#world-glitch-header);
+}
+
+html.world-glitch-frame .App > main {
+	filter: url(#world-glitch-main);
+}
+
+html.world-glitch-frame .App > footer {
+	filter: url(#world-glitch-footer);
+}
+
+html.world-glitch::before,
+html.world-glitch::after {
+	position: fixed;
+	inset: 0;
+	pointer-events: none;
+	content: '';
+}
+
+/* Digital noise + corruption blocks, re-randomized every frame */
+html.world-glitch::before {
+	z-index: 998;
+	background-image: var(--glitch-blocks, none), var(--glitch-noise);
+	background-size:
+		var(--glitch-blocks-size, auto),
+		180px 180px;
+	background-position:
+		var(--glitch-blocks-pos, 0 0),
+		var(--glitch-noise-pos, 0 0);
+	background-repeat: no-repeat, repeat;
+	mix-blend-mode: screen;
+	opacity: calc(0.15 + var(--glitch-progress, 0) * 0.45);
+}
+
+html.world-glitch:not(.world-glitch-frame)::before {
+	opacity: calc(var(--glitch-progress, 0) * 0.15);
+}
+
+/* Scanlines + darkening vignette that deepen with progress */
+html.world-glitch::after {
+	z-index: 999;
+	background:
+		repeating-linear-gradient(
+			to bottom,
+			transparent 0 2px,
+			rgb(255 255 255 / calc(0.025 + var(--glitch-progress, 0) * 0.05)) 2px 3px
+		),
+		radial-gradient(
+			ellipse at center,
+			transparent 45%,
+			rgb(0 0 0 / calc(var(--glitch-progress, 0) * 0.55)) 100%
+		);
+}
+
+/* Departure screen (WorldTransitScreen.vue) — sits under the glitch overlays */
+.world-transit {
+	position: fixed;
+	z-index: 997;
+	inset: 0;
+	display: grid;
+	place-items: center;
+	padding: 1.5rem;
+	background: rgb(5 5 5 / 94%);
+	backdrop-filter: blur(6px);
+}
+
+.world-transit__inner {
+	width: min(100%, 42rem);
+}
+
+.world-transit__label {
+	margin: 0 0 1.25rem;
+	color: var(--accent);
+	font-size: 11px;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	animation: world-blink 900ms step-end infinite;
+}
+
+.world-transit__title {
+	position: relative;
+	margin: 0;
+	color: var(--text);
+	font-size: clamp(1.9rem, 6vw, 3.75rem);
+	font-weight: 600;
+	line-height: 1.05;
+	letter-spacing: -0.02em;
+}
+
+.world-transit__title--accent {
+	color: var(--text-2);
+}
+
+.world-transit__title::before,
+.world-transit__title::after {
+	position: absolute;
+	inset: 0;
+	content: attr(data-text);
+	pointer-events: none;
+}
+
+.world-transit__title::before {
+	color: var(--accent);
+	animation: world-tear-a 1.1s step-end infinite;
+}
+
+.world-transit__title::after {
+	color: #d4d4d8;
+	animation: world-tear-b 1.3s step-end infinite;
+}
+
+.world-transit__bar {
+	overflow: hidden;
+	height: 2px;
+	margin: 2.5rem 0 0.875rem;
+	background: rgb(255 255 255 / 8%);
+}
+
+.world-transit__bar > span {
+	display: block;
+	height: 100%;
+	background: var(--accent);
+	box-shadow: 0 0 12px rgb(245 110 15 / 70%);
+}
+
+.world-transit__meta {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	color: #71717a;
+	font-size: 11px;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+}
+
+.world-transit-enter-active,
+.world-transit-leave-active {
+	transition: opacity 350ms ease;
+}
+
+.world-transit-enter-from,
+.world-transit-leave-to {
+	opacity: 0;
+}
+
+@keyframes world-tear-a {
+	0%,
+	100% {
+		clip-path: inset(0 0 100% 0);
+		translate: 0;
+	}
+
+	10% {
+		clip-path: inset(12% 0 64% 0);
+		translate: -6px;
+	}
+
+	22% {
+		clip-path: inset(58% 0 18% 0);
+		translate: 4px;
+	}
+
+	30% {
+		clip-path: inset(0 0 100% 0);
+	}
+
+	62% {
+		clip-path: inset(34% 0 44% 0);
+		translate: -3px;
+	}
+
+	70% {
+		clip-path: inset(0 0 100% 0);
+	}
+}
+
+@keyframes world-tear-b {
+	0%,
+	100% {
+		clip-path: inset(0 0 100% 0);
+		translate: 0;
+	}
+
+	16% {
+		clip-path: inset(70% 0 6% 0);
+		translate: 5px;
+	}
+
+	26% {
+		clip-path: inset(0 0 100% 0);
+	}
+
+	48% {
+		clip-path: inset(20% 0 60% 0);
+		translate: 3px;
+	}
+
+	58% {
+		clip-path: inset(46% 0 30% 0);
+		translate: -5px;
+	}
+
+	66% {
+		clip-path: inset(0 0 100% 0);
+	}
+}
+
+@keyframes world-blink {
+	50% {
+		opacity: 0.35;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.world-hop-link:hover,
+	.world-hop-link:focus-visible,
+	.world-transit__label,
+	.world-transit__title::before,
+	.world-transit__title::after {
+		animation: none;
+	}
+}
