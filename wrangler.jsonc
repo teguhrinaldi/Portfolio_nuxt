@@ -1,11 +1,8 @@
-// Cloudflare Workers (static assets) config. Build first with `npm run generate`.
-// Cloudflare Pages ignores this file and uses its dashboard settings instead.
+// Cloudflare Pages config (https://teguhrinaldi.pages.dev).
+// Deploy: `npm run generate` then `npx wrangler pages deploy`.
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "portfolio-nuxt",
+	"name": "teguhrinaldi",
 	"compatibility_date": "2025-07-15",
-	"assets": {
-		"directory": "./dist",
-		"not_found_handling": "404-page"
-	}
+	"pages_build_output_dir": "./dist"
 }

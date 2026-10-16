@@ -9,7 +9,7 @@ const open = ref(false);
 const mounted = ref(false);
 const transitionPending = ref(false);
 
-const otherWorldUrl = 'https://oddlyrinaldi.netlify.app/';
+const otherWorldUrl = 'https://oddlyrinaldi.pages.dev/';
 const transitDuration = ref(2800);
 const glitch = useWorldGlitch();
 
@@ -182,7 +182,7 @@ onBeforeUnmount(() => {
 					{{ link.label }}
 				</a>
 				<a
-					href="https://oddlyrinaldi.pages.dev/"
+					:href="otherWorldUrl"
 					data-testid="nav-world-link"
 					class="world-hop-link"
 					@pointerenter="startHoverGlitch"
@@ -253,7 +253,7 @@ onBeforeUnmount(() => {
 					</a>
 
 					<a
-						href="https://oddlyrinaldi.pages.dev/"
+						:href="otherWorldUrl"
 						data-testid="nav-world-link-mobile"
 						class="world-hop-link mt-2 w-fit px-4 py-3"
 						@pointerenter="startHoverGlitch"
