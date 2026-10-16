@@ -182,7 +182,7 @@ onBeforeUnmount(() => {
 					{{ link.label }}
 				</a>
 				<a
-					href="https://oddlyrinaldi.netlify.app/"
+					href="https://oddlyrinaldi.pages.dev/"
 					data-testid="nav-world-link"
 					class="world-hop-link"
 					@pointerenter="startHoverGlitch"
@@ -253,7 +253,7 @@ onBeforeUnmount(() => {
 					</a>
 
 					<a
-						href="https://oddlyrinaldi.netlify.app/"
+						href="https://oddlyrinaldi.pages.dev/"
 						data-testid="nav-world-link-mobile"
 						class="world-hop-link mt-2 w-fit px-4 py-3"
 						@pointerenter="startHoverGlitch"
